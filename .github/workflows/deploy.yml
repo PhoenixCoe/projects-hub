@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: PhoenixCoe/revisionhub
-          path: revision-hub
+          path: revisionhub
 
       - name: Create 404 Redirect Page
         run: |
