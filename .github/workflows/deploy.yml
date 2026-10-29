@@ -24,8 +24,8 @@ jobs:
       - name: Checkout Alumni
         uses: actions/checkout@v4
         with:
-          repository: PhoenixCoe/alunmi
-          path: alunmi
+          repository: PhoenixCoe/alumni
+          path: alumni
 
       - name: Checkout Student Page
         uses: actions/checkout@v4
