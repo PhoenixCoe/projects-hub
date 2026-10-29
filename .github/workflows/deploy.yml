@@ -1,0 +1,59 @@
+name: Deploy Projects Hub to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Hub Repo (index & 404)
+        uses: actions/checkout@v4
+
+      - name: Checkout Alumni
+        uses: actions/checkout@v4
+        with:
+          repository: PhoenixCoe/alunmi
+          path: alunmi
+
+      - name: Checkout Student Page
+        uses: actions/checkout@v4
+        with:
+          repository: PhoenixCoe/studentpage
+          path: studenthub
+
+      - name: Checkout Revision Hub
+        uses: actions/checkout@v4
+        with:
+          repository: PhoenixCoe/revision-hub
+          path: revisionhub
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
