@@ -36,7 +36,7 @@ jobs:
       - name: Checkout Revision Hub
         uses: actions/checkout@v4
         with:
-          repository: PhoenixCoe/revision-hub
+          repository: PhoenixCoe/revisionhub
           path: revision-hub
 
       - name: Setup Pages
