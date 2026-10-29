@@ -2,7 +2,7 @@ name: Deploy Projects Hub to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Hub Repo (index & 404)
+      - name: Checkout Hub Repo
         uses: actions/checkout@v4
 
       - name: Checkout Alumni
@@ -31,13 +31,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: PhoenixCoe/studentpage
-          path: studenthub
+          path: studentpage
 
       - name: Checkout Revision Hub
         uses: actions/checkout@v4
         with:
           repository: PhoenixCoe/revision-hub
-          path: revisionhub
+          path: revision-hub
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
