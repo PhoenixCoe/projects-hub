@@ -36,8 +36,24 @@ jobs:
       - name: Checkout Revision Hub
         uses: actions/checkout@v4
         with:
-          repository: PhoenixCoe/revisionhub
-          path: revisionhub
+          repository: PhoenixCoe/revision-hub
+          path: revision-hub
+
+      - name: Create 404 Redirect Page
+        run: |
+          cat << 'EOF' > 404.html
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="refresh" content="0; url=https://pmcstudios.uk/404">
+            <script>window.location.href = "https://pmcstudios.uk/404";</script>
+            <title>Page Not Found</title>
+          </head>
+          <body>
+          </body>
+          </html>
+          EOF
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
